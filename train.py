@@ -90,15 +90,15 @@ def _main_(args):
     if len(config['model']['labels']) > 0:
         overlap_labels = set(config['model']['labels']).intersection(set(train_labels.keys()))
 
-        print 'Seen labels:\t', train_labels
-        print 'Given labels:\t', config['model']['labels']
-        print 'Overlap labels:\t', overlap_labels           
+        print ('Seen labels:\t', train_labels)
+        print ('Given labels:\t', config['model']['labels'])
+        print ('Overlap labels:\t', overlap_labels)
 
         if len(overlap_labels) < len(config['model']['labels']):
-            print 'Some labels have no annotations! Please revise the list of labels in the config.json file!'
+            print ('Some labels have no annotations! Please revise the list of labels in the config.json file!')
             return
     else:
-        print 'No labels are provided. Train on all seen labels.'
+        print ('No labels are provided. Train on all seen labels.')
         config['model']['labels'] = train_labels.keys()
         
     ###############################
@@ -116,7 +116,7 @@ def _main_(args):
     ###############################    
 
     if os.path.exists(config['train']['pretrained_weights']):
-        print "Loading pre-trained weights in", config['train']['pretrained_weights']
+        print ("Loading pre-trained weights in", config['train']['pretrained_weights'])
         yolo.load_weights(config['train']['pretrained_weights'])
 
     ###############################

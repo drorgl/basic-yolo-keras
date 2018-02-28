@@ -82,6 +82,17 @@ def interval_overlap(interval_a, interval_b):
         else:
             return min(x2,x4) - x3  
 
+def get_boxes_dimensions(image, boxes):
+    refitted = []
+    for box in boxes:
+        xmin  = int((box.x - box.w/2) * image.shape[1])
+        xmax  = int((box.x + box.w/2) * image.shape[1])
+        ymin  = int((box.y - box.h/2) * image.shape[0])
+        ymax  = int((box.y + box.h/2) * image.shape[0])
+        refitted.append([xmin,ymin,xmax,ymax])
+    return refitted
+
+
 def draw_boxes(image, boxes, labels):
     
     for box in boxes:

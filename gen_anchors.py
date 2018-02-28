@@ -61,7 +61,7 @@ def print_anchors(centroids):
     r += '%0.2f,%0.2f' % (anchors[sorted_indices[-1:],0], anchors[sorted_indices[-1:],1])
     r += "]"
 
-    print r
+    print (r)
 
 def run_kmeans(ann_dims, anchor_num):
     ann_num = ann_dims.shape[0]
@@ -82,7 +82,7 @@ def run_kmeans(ann_dims, anchor_num):
             distances.append(d)
         distances = np.array(distances) # distances.shape = (ann_num, anchor_num)
 
-        print "iteration {}: dists = {}".format(iteration, np.sum(np.abs(old_distances-distances)))
+        print ("iteration {}: dists = {}".format(iteration, np.sum(np.abs(old_distances-distances))))
 
         #assign samples to centroids
         assignments = np.argmin(distances,axis=1)
@@ -129,7 +129,7 @@ def main(argv):
     centroids = run_kmeans(annotation_dims, num_anchors)
 
     # write anchors to file
-    print '\naverage IOU for', num_anchors, 'anchors:', '%0.2f' % avg_IOU(annotation_dims, centroids)
+    print ('\naverage IOU for', num_anchors, 'anchors:', '%0.2f' % avg_IOU(annotation_dims, centroids))
     print_anchors(centroids)
 
 if __name__ == '__main__':
